@@ -5,7 +5,6 @@
 #include "Vtop.h"
 
 //macros which make io config file a bit nicer
-#define IO_CONFIG extern Vtop *top; extern inputMapping ins[]; extern outputMapping outs[]; uint NUM_INPUTS, NUM_OUTPUTS;
 #define INPUTS void mapInputs()
 #define OUTPUTS void mapOutputs()
 

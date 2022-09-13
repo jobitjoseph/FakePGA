@@ -4,4 +4,6 @@ mkdir build
 mkdir build/obj_dir
 touch build/obj_dir/Vtop.cpp
 touch build/obj_dir/Vtop__Syms.cpp
+touch build/io.cpp
+
 

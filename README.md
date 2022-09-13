@@ -14,7 +14,8 @@ After cloning this repository, you'll need to set the path of the Verilator libr
 ## How do I use it?
 The Verilog design files reside in the _verilog_ folder. The top module resides in the [top.v](verilog/top.v) file and it **must** be named _top_. It **must** have an input port named *i_clk*, which coresponds to the clock source for the design, no matter if it's used or not.
 
-The simulation is configured in the [src/io.cpp](src/io.cpp) file. This is the only C++ source file you'll have to edit. The input clock frequency can be set from there. Just like when using an actual FPGA, you'll need to map the ports of your design to real pins on the device.
+The simulation is configured in the [config.txt](config.txt) file. Just like when using an actual FPGA, you'll need to map the ports of your design to real pins on the device. You can also set the clock freqency here. The config file used for the included example is presented below:
+
 ```cpp
 // Clock frequency in Hz
 CLOCK_FREQ 5000;

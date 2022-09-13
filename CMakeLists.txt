@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 add_custom_target(
     verilatorOutput
-    COMMAND verilator -cc ${CMAKE_CURRENT_SOURCE_DIR}/verilog/top.v -Wno-INITIALDLY -Wno-UNOPTFLAT -I${CMAKE_CURRENT_SOURCE_DIR}/verilog --top-module top
+    COMMAND verilator -cc ${CMAKE_CURRENT_SOURCE_DIR}/verilog/top.v -Wno-INITIALDLY -Wno-UNOPTFLAT -I${CMAKE_CURRENT_SOURCE_DIR}/verilog --top-module top && cat ${CMAKE_CURRENT_SOURCE_DIR}/src/io_stub.cpp ${CMAKE_CURRENT_SOURCE_DIR}/config.txt > ${CMAKE_CURRENT_BINARY_DIR}/io.cpp
 )
 
 include(pico_sdk_import.cmake)
@@ -15,12 +15,13 @@ pico_sdk_init()
 
 add_executable(${target_name})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/inc)
 include_directories(${libVerilator})
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/obj_dir)
 
 target_sources(${target_name} PRIVATE
     src/main.cpp
-    src/io.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/io.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/obj_dir/Vtop.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/obj_dir/Vtop__Syms.cpp
     ${libVerilator}/verilated.cpp
